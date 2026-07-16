@@ -7,12 +7,14 @@
 </head>
 <body>
     <h1>{{title}}</h1>
-    {%if Logged_in%}
+    {%if logged_in%}
         <h2>Welcome {{username}}</h2>
         <h3>Your Notes:</h3>
         <ul>
             {%for note in notes%}
-            <li>{{note}}</li>
+                <li>{{note}}</li>
+            {% empty %}
+                <li>No Notes Found</li>
             {%endfor%}
         </ul>
     {%else%}

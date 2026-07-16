@@ -5,7 +5,7 @@ def home(request):
     context = {
         "title" : "My Notes",
         "username":"Paban",
-        "Logged_in":True,
+        "logged_in":True,
         "notes": [
             "Learn Django",
             "Complete Internship Task",

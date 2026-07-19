@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-</head>
-<body>
-    <h1>{{title}}</h1>
-    {%if logged_in%}
-        <h2>Welcome {{username|upper}}, You have {{notes|length}} notes.</h2>
-        <h3>Your Notes:</h3>
-        <ul>
-            {%for note in notes%}
-                <li>{{note}}</li>
-            {% empty %}
-                <li>No Notes Found</li>
-            {%endfor%}
-        </ul>
-    {%else%}
-        <h2>Please Login</h2>
-    {%endif%}
-</body>
-</html>
+{% extends "note/base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+{% if logged_in %}
+    <h2>Welcome {{ username }}</h2>
+    <p>Total Notes: {{ notes|length }}</p>
+    <ul>
+        {% for note in notes %}
+            <li>{{ note }}</li>
+        {% empty %}
+            <li>No Notes Found</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h2>Please Login</h2>
+{% endif %}
+
+{% endblock %}

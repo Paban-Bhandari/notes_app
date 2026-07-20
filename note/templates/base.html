@@ -6,10 +6,7 @@
     <title>{% block title %}Notes App{% endblock %}</title>
 </head>
 <body>
-    <nav>
-        <h2>📒 Notes App</h2>
-        <hr>
-    </nav>
+    {% include "partials/navbar.html" %}
     {% block content %}
 
     {% endblock %}

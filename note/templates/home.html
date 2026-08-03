@@ -5,20 +5,20 @@ Home
 {% endblock %}
 
 {% block content %}
+<div class="container">
+    <h1>My Notes</h1>
+    <p>Here are your saved notes.</p>
 
-<h1>{{ title }}</h1>
-{% if logged_in %}
-    <h2>Welcome {{ username }}</h2>
-    <p>Total Notes: {{ notes|length }}</p>
-    <ul>
+    {% if notes %}
         {% for note in notes %}
-            <li>{{ note }}</li>
-        {% empty %}
-            <li>No Notes Found</li>
+            <div class="note-card">
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.content }}</p>
+                <small>Created: {{ note.created_at|date:"M d, Y H:i" }}</small>
+            </div>
         {% endfor %}
-    </ul>
-{% else %}
-    <h2>Please Login</h2>
-{% endif %}
-
+    {% else %}
+        <p>No notes yet. Add one from the admin panel.</p>
+    {% endif %}
+</div>
 {% endblock %}

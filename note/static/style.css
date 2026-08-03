@@ -4,6 +4,40 @@ body{
     margin:40px;
 }
 
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.note-form input,
+.note-form textarea,
+.note-form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.note-form button {
+    background: #222;
+    color: white;
+    cursor: pointer;
+}
+
+.note-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
 nav{
     background:#222;
     color:white;

@@ -7,8 +7,16 @@ Home
 {% block content %}
 <div class="container">
     <h1>My Notes</h1>
-    <p>Here are your saved notes.</p>
+    <p>Create a new note below.</p>
 
+    <form method="post" class="note-form">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Note title" required>
+        <textarea name="content" placeholder="Write your note here..." rows="4" required></textarea>
+        <button type="submit">Save Note</button>
+    </form>
+
+    <h2>Saved Notes</h2>
     {% if notes %}
         {% for note in notes %}
             <div class="note-card">
@@ -18,7 +26,7 @@ Home
             </div>
         {% endfor %}
     {% else %}
-        <p>No notes yet. Add one from the admin panel.</p>
+        <p>No notes yet. Start by creating one.</p>
     {% endif %}
 </div>
 {% endblock %}

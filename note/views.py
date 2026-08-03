@@ -3,6 +3,8 @@ from .models import Note
 
 
 def home(request):
+    query = request.GET.get("q", "").strip()
+
     if request.method == "POST":
         title = request.POST.get("title", "").strip()
         content = request.POST.get("content", "").strip()
@@ -13,7 +15,10 @@ def home(request):
         return redirect("home")
 
     notes = Note.objects.all().order_by("-id")
-    return render(request, "home.html", {"notes": notes})
+    if query:
+        notes = notes.filter(title__icontains=query) | notes.filter(content__icontains=query)
+
+    return render(request, "home.html", {"notes": notes, "query": query})
 
 
 def edit_note(request, note_id):

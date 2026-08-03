@@ -6,27 +6,40 @@ Home
 
 {% block content %}
 <div class="container">
-    <h1>My Notes</h1>
-    <p>Create a new note below.</p>
+    <section class="hero-card">
+        <div>
+            <p class="eyebrow">Simple • Fast • Personal</p>
+            <h1>Keep your thoughts in one place</h1>
+            <p>Create a note in seconds and revisit it anytime.</p>
+        </div>
+    </section>
 
-    <form method="post" class="note-form">
-        {% csrf_token %}
-        <input type="text" name="title" placeholder="Note title" required>
-        <textarea name="content" placeholder="Write your note here..." rows="4" required></textarea>
-        <button type="submit">Save Note</button>
-    </form>
+    <section class="panel">
+        <form method="post" class="note-form">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Note title" required>
+            <textarea name="content" placeholder="Write your note here..." rows="4" required></textarea>
+            <button type="submit">Save Note</button>
+        </form>
+    </section>
 
-    <h2>Saved Notes</h2>
-    {% if notes %}
-        {% for note in notes %}
-            <div class="note-card">
-                <h3>{{ note.title }}</h3>
-                <p>{{ note.content }}</p>
-                <small>Created: {{ note.created_at|date:"M d, Y H:i" }}</small>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>No notes yet. Start by creating one.</p>
-    {% endif %}
+    <section class="panel">
+        <div class="section-heading">
+            <h2>Saved Notes</h2>
+            <span>{{ notes|length }} total</span>
+        </div>
+
+        {% if notes %}
+            {% for note in notes %}
+                <article class="note-card">
+                    <h3>{{ note.title }}</h3>
+                    <p>{{ note.content }}</p>
+                    <small>Created: {{ note.created_at|date:"M d, Y H:i" }}</small>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p class="empty-state">No notes yet. Start by creating one.</p>
+        {% endif %}
+    </section>
 </div>
 {% endblock %}

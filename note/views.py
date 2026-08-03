@@ -1,16 +1,6 @@
 from django.shortcuts import render
+from .models import Note
 
-# Create your views here.
 def home(request):
-    context = {
-        "title" : "My Notes",
-        "username":"Paban",
-        "logged_in":True,
-        "notes": [
-            "Learn Django",
-            "Complete Internship Task",
-            "Push Code to GitHub",
-            "Watch Django Tutorial"
-        ]
-    }
-    return render (request,"home.html",context)
+    notes = Note.objects.all().order_by("-id")
+    return render(request, "home.html", {"notes": notes})

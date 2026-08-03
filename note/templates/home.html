@@ -32,7 +32,13 @@ Home
         {% if notes %}
             {% for note in notes %}
                 <article class="note-card">
-                    <h3>{{ note.title }}</h3>
+                    <div class="note-card-header">
+                        <h3>{{ note.title }}</h3>
+                        <div class="note-actions">
+                            <a href="{% url 'edit_note' note.id %}">Edit</a>
+                            <a href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
+                        </div>
+                    </div>
                     <p>{{ note.content }}</p>
                     <small>Created: {{ note.created_at|date:"M d, Y H:i" }}</small>
                 </article>

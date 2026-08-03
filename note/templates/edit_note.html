@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Note
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="panel">
+        <h2>Edit Note</h2>
+        <form method="post" class="note-form">
+            {% csrf_token %}
+            <input type="text" name="title" value="{{ note.title }}" required>
+            <textarea name="content" rows="6" required>{{ note.content }}</textarea>
+            <button type="submit">Update Note</button>
+        </form>
+    </section>
+</div>
+{% endblock %}

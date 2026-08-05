@@ -14,43 +14,53 @@ Home
         </div>
     </section>
 
-    <section class="panel">
-        <form method="post" class="note-form">
-            {% csrf_token %}
-            <input type="text" name="title" placeholder="Note title" required>
-            <textarea name="content" placeholder="Write your note here..." rows="4" required></textarea>
-            <button type="submit">Save Note</button>
-        </form>
-    </section>
+    <div class="grid">
+        <aside class="panel left-panel">
+            <h2 class="panel-title">New Note</h2>
+            <form method="post" class="note-form">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="Note title" required>
+                <textarea name="content" placeholder="Write your note here..." rows="6" required></textarea>
+                <div class="form-row">
+                    <button type="submit" class="btn primary">Save</button>
+                    <button type="reset" class="btn secondary">Clear</button>
+                </div>
+            </form>
+        </aside>
 
-    <section class="panel">
-        <div class="section-heading">
-            <h2>Saved Notes</h2>
-            <span>{{ notes|length }} total</span>
-        </div>
+        <section class="panel right-panel">
+            <div class="section-heading">
+                <h2>Saved Notes</h2>
+                <span class="muted">{{ notes|length }} total</span>
+            </div>
 
-        <form method="get" class="search-form">
-            <input type="text" name="q" value="{{ query }}" placeholder="Search notes...">
-            <button type="submit">Search</button>
-        </form>
+            <form method="get" class="search-form">
+                <input type="text" name="q" value="{{ query }}" placeholder="Search notes...">
+                <button type="submit" class="btn">Search</button>
+            </form>
 
-        {% if notes %}
-            {% for note in notes %}
-                <article class="note-card">
-                    <div class="note-card-header">
-                        <h3>{{ note.title }}</h3>
-                        <div class="note-actions">
-                            <a href="{% url 'edit_note' note.id %}">Edit</a>
-                            <a href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
-                        </div>
-                    </div>
-                    <p>{{ note.content }}</p>
-                    <small>Created: {{ note.created_at|date:"M d, Y H:i" }}</small>
-                </article>
-            {% endfor %}
-        {% else %}
-            <p class="empty-state">No notes yet. Start by creating one.</p>
-        {% endif %}
-    </section>
+            <div class="notes-list">
+                {% if notes %}
+                    {% for note in notes %}
+                        <article class="note-card">
+                            <div class="note-card-header">
+                                <h3>{{ note.title }}</h3>
+                                <div class="note-actions">
+                                    <a class="btn tiny" href="{% url 'edit_note' note.id %}">Edit</a>
+                                    <a class="btn tiny danger" href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
+                                </div>
+                            </div>
+                            <p class="excerpt">{{ note.content }}</p>
+                            <div class="meta">
+                                <small>Created: {{ note.created_at|date:"M d, Y H:i" }}</small>
+                            </div>
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty-state">No notes yet. Start by creating one.</p>
+                {% endif %}
+            </div>
+        </section>
+    </div>
 </div>
 {% endblock %}

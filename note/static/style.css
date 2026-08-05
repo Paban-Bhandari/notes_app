@@ -219,6 +219,23 @@ body {
     .container { padding: 18px 12px 40px; }
 }
 
+.excerpt.expanded {
+    -webkit-line-clamp: unset;
+    display: block;
+    max-height: none;
+}
+
+.read-more {
+    margin-top: 6px;
+    background: transparent;
+    border: none;
+    color: #374151;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.read-more:hover { text-decoration: underline; }
+
 .note-card p {
     margin: 0 0 8px;
     color: #374151;

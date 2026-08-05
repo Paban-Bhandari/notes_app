@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.http import JsonResponse
 from .models import Note
 
 
@@ -17,6 +18,19 @@ def home(request):
     notes = Note.objects.all().order_by("-id")
     if query:
         notes = notes.filter(title__icontains=query) | notes.filter(content__icontains=query)
+
+    # Return JSON for AJAX search requests to keep responses light-weight
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        notes_list = [
+            {
+                "id": n.id,
+                "title": n.title,
+                "content": n.content,
+                "created_at": n.created_at.strftime("%b %d, %Y %H:%M"),
+            }
+            for n in notes
+        ]
+        return JsonResponse({"notes": notes_list})
 
     return render(request, "home.html", {"notes": notes, "query": query})
 

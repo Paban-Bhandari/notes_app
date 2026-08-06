@@ -5,62 +5,93 @@ Home
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <section class="hero-card">
-        <div>
-            <p class="eyebrow">Simple • Fast • Personal</p>
-            <h1>Keep your thoughts in one place</h1>
-            <p>Create a note in seconds and revisit it anytime.</p>
+<div class="container py-5">
+    <div class="row g-4 mb-4">
+        <div class="col-lg-8">
+            <div class="hero-card p-5 rounded-4">
+                <p class="eyebrow mb-3">Simple • Fast • Personal</p>
+                <h1 class="display-6 fw-bold">Keep your thoughts in one place</h1>
+                <p class="lead text-secondary">Create a note in seconds and revisit it anytime. Quick Note helps you stay organized with a modern, distraction-free interface.</p>
+            </div>
         </div>
-    </section>
+        <div class="col-lg-4">
+            <div class="p-4 rounded-4 shadow-sm bg-white border border-1 border-opacity-10">
+                <h2 class="h5 mb-3">Your productivity dashboard</h2>
+                <ul class="list-unstyled text-secondary mb-0">
+                    <li class="mb-2">• Fast note creation</li>
+                    <li class="mb-2">• Easy filtering</li>
+                    <li class="mb-2">• Clean reading experience</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <div class="grid">
-        <aside class="panel left-panel">
-            <h2 class="panel-title">New Note</h2>
-            <form method="post" class="note-form">
-                {% csrf_token %}
-                <input type="text" name="title" placeholder="Note title" required>
-                <textarea name="content" placeholder="Write your note here..." rows="6" required></textarea>
-                <div class="form-row">
-                    <button type="submit" class="btn primary">Save</button>
-                    <button type="reset" class="btn secondary">Clear</button>
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h3 class="card-title mb-3">New Note</h3>
+                    <form method="post" class="note-form">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label visually-hidden" for="title">Title</label>
+                            <input id="title" type="text" name="title" class="form-control form-control-lg" placeholder="Note title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label visually-hidden" for="content">Content</label>
+                            <textarea id="content" name="content" class="form-control" placeholder="Write your note here..." rows="6" required></textarea>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary w-100">Save</button>
+                            <button type="reset" class="btn btn-outline-secondary w-100">Clear</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </aside>
-
-        <section class="panel right-panel">
-            <div class="section-heading">
-                <h2>Saved Notes</h2>
-                <span class="muted">{{ notes|length }} total</span>
             </div>
+        </div>
 
-            <form method="get" class="search-form">
-                <input type="text" name="q" value="{{ query }}" placeholder="Search notes...">
-                <button type="submit" class="btn">Search</button>
-            </form>
+        <div class="col-lg-8">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <h3 class="mb-1">Saved Notes</h3>
+                            <p class="text-muted mb-0">{{ notes|length }} total</p>
+                        </div>
+                        <form method="get" class="d-flex gap-2 align-items-center mb-0">
+                            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search notes...">
+                            <button type="submit" class="btn btn-outline-primary">Search</button>
+                        </form>
+                    </div>
 
-            <div class="notes-list">
-                {% if notes %}
-                    {% for note in notes %}
-                        <article class="note-card">
-                            <div class="note-card-header">
-                                <h3>{{ note.title }}</h3>
-                                <div class="note-actions">
-                                    <a class="btn tiny" href="{% url 'edit_note' note.id %}">Edit</a>
-                                    <a class="btn tiny danger" href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
-                                </div>
+                    <div class="notes-list">
+                        {% if notes %}
+                            <div class="row g-3">
+                                {% for note in notes %}
+                                    <div class="col-12">
+                                        <article class="note-card card border-0 shadow-sm overflow-hidden">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h5 class="card-title mb-1">{{ note.title }}</h5>
+                                                    <div class="d-flex gap-2">
+                                                        <a class="btn btn-sm btn-outline-secondary" href="{% url 'edit_note' note.id %}">Edit</a>
+                                                        <a class="btn btn-sm btn-danger" href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
+                                                    </div>
+                                                </div>
+                                                <p class="card-text text-secondary mb-2">{{ note.content }}</p>
+                                                <p class="text-muted small mb-0">Created: {{ note.created_at|date:"M d, Y H:i" }}</p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                {% endfor %}
                             </div>
-                            <p class="excerpt">{{ note.content }}</p>
-                            <div class="meta">
-                                <small>Created: {{ note.created_at|date:"M d, Y H:i" }}</small>
-                            </div>
-                        </article>
-                    {% endfor %}
-                {% else %}
-                    <p class="empty-state">No notes yet. Start by creating one.</p>
-                {% endif %}
+                        {% else %}
+                            <div class="alert alert-info mb-0">No notes yet. Start by creating one.</div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
     </div>
 </div>
 {% endblock %}

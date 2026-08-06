@@ -1,67 +1,34 @@
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
     margin: 0;
     color: #1f2937;
 }
 
-.container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 30px 20px 50px;
+.hero-card,
+.panel,
+.card-body {
+    border-radius: 1.5rem;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
-}
-
-.topbar {
-    background: #111827;
-    color: white;
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 18px;
-}
-
-.logo-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: white;
+.hero-card {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
 }
 
 .logo-image {
-    width: 42px;
-    height: 42px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 14px;
     background: white;
-    padding: 6px;
+    padding: 8px;
 }
 
 .logo-text {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    letter-spacing: 0.01em;
-}
-
-.topbar-subtitle {
-    color: #cbd5e1;
-    font-size: 0.95rem;
-}
-
-.hero-card,
-.panel {
-    background: white;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-    margin-bottom: 20px;
+    letter-spacing: 0.02em;
 }
 
 .eyebrow {
@@ -69,208 +36,51 @@ body {
     letter-spacing: 0.2em;
     font-size: 0.75rem;
     color: #6366f1;
-    font-weight: bold;
-    margin-bottom: 8px;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
 }
 
-.hero-card h1 {
-    margin: 0 0 8px;
-    font-size: 1.8rem;
-}
-
-.hero-card p {
-    margin: 0;
-    color: #6b7280;
-}
-
-.note-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.note-form input,
 .note-form textarea,
-.note-form button {
-    padding: 12px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 1rem;
-}
-
-.note-form input:focus,
-.note-form textarea:focus {
-    outline: 2px solid #a5b4fc;
-    border-color: #6366f1;
+.note-form input {
+    border-radius: 1rem;
 }
 
 .note-form button {
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
-    color: white;
-    cursor: pointer;
-    border: none;
-    font-weight: bold;
-}
-
-.btn {
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: #111827;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.btn.primary {
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
-}
-
-.btn.secondary {
-    background: #e6e9f8;
-    color: #111827;
-}
-
-.btn.tiny {
-    padding: 6px 8px;
-    font-size: 0.85rem;
-    border-radius: 8px;
-}
-
-.btn.danger {
-    background: linear-gradient(135deg, #ef4444, #f97316);
-}
-
-.section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-}
-
-.muted { color: #6b7280; }
-
-.section-heading h2 {
-    margin: 0;
-    font-size: 1.2rem;
-}
-
-.section-heading span {
-    color: #6b7280;
-    font-size: 0.9rem;
-}
-
-.search-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 16px;
-}
-
-.search-form input {
-    flex: 1;
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-}
-
-.search-form button {
-    padding: 10px 14px;
-    border: none;
-    border-radius: 10px;
-    background: #111827;
-    color: white;
-    cursor: pointer;
+    border-radius: 1rem;
 }
 
 .note-card {
-    background: #f9fafb;
-    padding: 16px;
-    border-radius: 12px;
-    margin-bottom: 12px;
-    border-left: 4px solid #6366f1;
+    border-radius: 1.25rem;
 }
 
-.note-card:hover {
-    transform: translateY(-4px);
-    transition: transform 160ms ease;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-}
-
-.note-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
-}
-
-.note-card h3 {
-    margin: 0;
-}
-
-.note-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.note-actions a {
-    text-decoration: none;
-    color: #4f46e5;
-    font-size: 0.9rem;
-}
-
-.note-actions .btn { text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
-
-.excerpt {
-    color: #374151;
-    margin: 0 0 10px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+.note-card.card {
     overflow: hidden;
 }
 
-.meta { color: #6b7280; }
-
-.left-panel .panel-title { margin-top: 0; margin-bottom: 12px; }
-
-@media (max-width: 880px) {
-    .grid { grid-template-columns: 1fr; }
-    .container { padding: 18px 12px 40px; }
+.note-card .card-body {
+    padding: 1.6rem;
 }
 
-.excerpt.expanded {
-    -webkit-line-clamp: unset;
-    display: block;
-    max-height: none;
+.note-card h5 {
+    margin-bottom: 0.5rem;
 }
-
-.read-more {
-    margin-top: 6px;
-    background: transparent;
-    border: none;
-    color: #374151;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.read-more:hover { text-decoration: underline; }
 
 .note-card p {
-    margin: 0 0 8px;
-    color: #374151;
-}
-
-.note-card small {
-    color: #6b7280;
-}
-
-.empty-state {
-    color: #6b7280;
-    padding: 10px 0;
+    margin-bottom: 0.75rem;
 }
 
 .footer {
-    text-align: center;
     color: #6b7280;
-    padding: 0 20px 24px;
+}
+
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .navbar-text {
+        display: none !important;
+    }
 }

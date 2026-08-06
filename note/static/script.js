@@ -1,7 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-	// Auto-focus the title input when the compose form is present
+	// Auto-focus the title input when the compose form is present or when the add-note modal opens
 	const titleInput = document.querySelector('.note-form input[name="title"]');
 	if (titleInput) titleInput.focus();
+
+	const addNoteModalEl = document.getElementById('addNoteModal');
+	if (addNoteModalEl) {
+		addNoteModalEl.addEventListener('shown.bs.modal', () => {
+			const modalTitleInput = addNoteModalEl.querySelector('input[name="title"]');
+			if (modalTitleInput) modalTitleInput.focus();
+		});
+	}
 
 	// Initialize collapsible excerpts
 	function initExcerpts() {

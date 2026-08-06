@@ -6,89 +6,107 @@ Home
 
 {% block content %}
 <div class="container py-5">
-    <div class="row g-4 mb-4">
-        <div class="col-lg-8">
-            <div class="hero-card p-5 rounded-4">
-                <p class="eyebrow mb-3">Simple • Fast • Personal</p>
-                <h1 class="display-6 fw-bold">Keep your thoughts in one place</h1>
-                <p class="lead text-secondary">Create a note in seconds and revisit it anytime. Quick Note helps you stay organized with a modern, distraction-free interface.</p>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="p-4 rounded-4 shadow-sm bg-white border border-1 border-opacity-10">
-                <h2 class="h5 mb-3">Your productivity dashboard</h2>
-                <ul class="list-unstyled text-secondary mb-0">
-                    <li class="mb-2">• Fast note creation</li>
-                    <li class="mb-2">• Easy filtering</li>
-                    <li class="mb-2">• Clean reading experience</li>
-                </ul>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="p-5 rounded-4 shadow-sm bg-white border border-1 border-opacity-10">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge rounded-pill bg-primary bg-opacity-15 text-primary py-2 px-3">Simple • Fast • Personal</span>
+                </div>
+                <h1 class="display-5 fw-bold mb-3">Keep your thoughts in one place</h1>
+                <p class="text-muted fs-5 mb-4">A clean note workspace for capturing ideas quickly, reviewing them later, and staying organized without clutter.</p>
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <div class="p-3 rounded-4 bg-light border border-1 border-opacity-10 h-100">
+                            <h6 class="mb-2">Fast note creation</h6>
+                            <p class="small text-muted mb-0">Open the drawer, enter a title, and save in seconds.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="p-3 rounded-4 bg-light border border-1 border-opacity-10 h-100">
+                            <h6 class="mb-2">Easy filtering</h6>
+                            <p class="small text-muted mb-0">Search notes instantly and find what matters.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="p-3 rounded-4 bg-light border border-1 border-opacity-10 h-100">
+                            <h6 class="mb-2">Clean experience</h6>
+                            <p class="small text-muted mb-0">Focus on notes with a minimal, modern interface.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row g-4">
-        <div class="col-lg-4">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h3 class="card-title mb-3">New Note</h3>
+    <div class="d-flex align-items-center justify-content-between mb-4 gap-3">
+        <div>
+            <h2 class="h4 mb-1">Saved Notes</h2>
+            <p class="text-muted mb-0">{{ notes|length }} total</p>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+            <form method="get" class="d-flex gap-2 align-items-center mb-0">
+                <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search notes...">
+                <button type="submit" class="btn btn-outline-primary">Search</button>
+            </form>
+            <button type="button" class="btn btn-primary btn-lg d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addNoteModal">
+                <span class="fs-4">+</span>
+                Add Note
+            </button>
+        </div>
+    </div>
+
+    <div class="notes-list">
+        {% if notes %}
+            <div class="row g-3">
+                {% for note in notes %}
+                    <div class="col-12">
+                        <article class="note-card card border-0 shadow-sm overflow-hidden">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="card-title mb-1">{{ note.title }}</h5>
+                                    <div class="d-flex gap-2">
+                                        <a class="btn btn-sm btn-outline-secondary" href="{% url 'edit_note' note.id %}">Edit</a>
+                                        <a class="btn btn-sm btn-danger" href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
+                                    </div>
+                                </div>
+                                <p class="card-text text-secondary mb-2">{{ note.content }}</p>
+                                <p class="text-muted small mb-0">Created: {{ note.created_at|date:"M d, Y H:i" }}</p>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info mb-0">No notes yet. Start by creating one.</div>
+        {% endif %}
+    </div>
+
+    <div class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="addNoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow-lg">
+                <div class="modal-header border-0">
+                    <div>
+                        <h5 class="modal-title" id="addNoteModalLabel">Add Note</h5>
+                        <p class="text-muted mb-0">Quickly capture a new note.</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-0">
                     <form method="post" class="note-form">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label class="form-label visually-hidden" for="title">Title</label>
-                            <input id="title" type="text" name="title" class="form-control form-control-lg" placeholder="Note title" required>
+                            <label class="form-label" for="modal-title">Title</label>
+                            <input id="modal-title" type="text" name="title" class="form-control form-control-lg" placeholder="Note title" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label visually-hidden" for="content">Content</label>
-                            <textarea id="content" name="content" class="form-control" placeholder="Write your note here..." rows="6" required></textarea>
+                            <label class="form-label" for="modal-content">Content</label>
+                            <textarea id="modal-content" name="content" class="form-control" placeholder="Write your note here..." rows="6" required></textarea>
                         </div>
                         <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-primary w-100">Save</button>
-                            <button type="reset" class="btn btn-outline-secondary w-100">Clear</button>
+                            <button type="submit" class="btn btn-primary w-100">Save note</button>
+                            <button type="button" class="btn btn-outline-secondary w-100" data-bs-dismiss="modal">Cancel</button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-8">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div>
-                            <h3 class="mb-1">Saved Notes</h3>
-                            <p class="text-muted mb-0">{{ notes|length }} total</p>
-                        </div>
-                        <form method="get" class="d-flex gap-2 align-items-center mb-0">
-                            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search notes...">
-                            <button type="submit" class="btn btn-outline-primary">Search</button>
-                        </form>
-                    </div>
-
-                    <div class="notes-list">
-                        {% if notes %}
-                            <div class="row g-3">
-                                {% for note in notes %}
-                                    <div class="col-12">
-                                        <article class="note-card card border-0 shadow-sm overflow-hidden">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                                    <h5 class="card-title mb-1">{{ note.title }}</h5>
-                                                    <div class="d-flex gap-2">
-                                                        <a class="btn btn-sm btn-outline-secondary" href="{% url 'edit_note' note.id %}">Edit</a>
-                                                        <a class="btn btn-sm btn-danger" href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-secondary mb-2">{{ note.content }}</p>
-                                                <p class="text-muted small mb-0">Created: {{ note.created_at|date:"M d, Y H:i" }}</p>
-                                            </div>
-                                        </article>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            <div class="alert alert-info mb-0">No notes yet. Start by creating one.</div>
-                        {% endif %}
-                    </div>
                 </div>
             </div>
         </div>

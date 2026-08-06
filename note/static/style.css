@@ -24,14 +24,33 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 18px;
 }
 
-.topbar h2 {
-    margin: 0;
-    font-size: 1.2rem;
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
 }
 
-.topbar span {
+.logo-image {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: white;
+    padding: 6px;
+}
+
+.logo-text {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.topbar-subtitle {
     color: #cbd5e1;
     font-size: 0.95rem;
 }

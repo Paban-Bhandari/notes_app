@@ -1,4 +1,8 @@
+{% load static %}
 <nav class="topbar">
-    <h2>📝 Notes App</h2>
-    <span>Capture ideas effortlessly</span>
+    <a class="logo-link" href="/">
+        <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="logo-image">
+        <span class="logo-text"><strong>Quick</strong>Note</span>
+    </a>
+    <span class="topbar-subtitle">Capture ideas effortlessly</span>
 </nav>

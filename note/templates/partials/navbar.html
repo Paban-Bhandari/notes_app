@@ -1,12 +1,15 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <div class="container py-3">
-        <a class="navbar-brand d-flex align-items-center gap-3" href="/">
-            <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="logo-image">
+<nav class="sidebar" aria-label="Sidebar navigation">
+    <a class="sidebar__brand" href="/">
+        <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="logo-image">
+        <span>
             <span class="logo-text"><strong>Quick</strong> Note</span>
-        </a>
-        <div class="navbar-text d-none d-lg-block text-white-50 ms-auto">
-            Capture ideas effortlessly
-        </div>
+            <span class="sidebar__subtitle">Capture ideas effortlessly</span>
+        </span>
+    </a>
+
+    <div class="sidebar__nav">
+        <a class="sidebar__link active" href="/">Home</a>
+        <a class="sidebar__link" href="/">Notes</a>
     </div>
 </nav>

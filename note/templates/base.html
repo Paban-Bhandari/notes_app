@@ -9,11 +9,23 @@
     <title>{% block title %}Notes App{% endblock %}</title>
 </head>
 <body>
-    {% include "partials/navbar.html" %}
-    {% block content %}
-
-    {% endblock %}
-    {% include "partials/footer.html" %}
+    <div class="app-shell">
+        {% include "partials/navbar.html" %}
+        <div class="page-content">
+            <div class="utility-bar">
+                <div class="utility-bar__label">Workspace • Notes</div>
+                <div class="utility-bar__clock">
+                    <span id="current-date"></span>
+                    <span class="utility-bar__divider">•</span>
+                    <span id="current-time"></span>
+                </div>
+            </div>
+            <main class="main-area">
+                {% block content %}{% endblock %}
+                {% include "partials/footer.html" %}
+            </main>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'script.js' %}"></script>
 </body>

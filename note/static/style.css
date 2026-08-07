@@ -5,6 +5,107 @@ body {
     color: #1f2937;
 }
 
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+    color: #f9fafb;
+    padding: 1.5rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar__subtitle {
+    display: block;
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    margin-top: 0.15rem;
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar__link {
+    color: #e5e7eb;
+    text-decoration: none;
+    padding: 0.8rem 0.95rem;
+    border-radius: 0.95rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar__link:hover,
+.sidebar__link.active {
+    background: rgba(255, 255, 255, 0.14);
+    color: white;
+    transform: translateX(2px);
+}
+
+.page-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow-y: auto;
+}
+
+.utility-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.95rem 1.35rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.utility-bar__label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.utility-bar__clock {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.utility-bar__divider {
+    color: #94a3b8;
+}
+
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .hero-card,
 .panel,
 .card-body {
@@ -26,9 +127,10 @@ body {
 }
 
 .logo-text {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.02em;
+    display: block;
 }
 
 .eyebrow {
@@ -71,16 +173,22 @@ body {
 
 .footer {
     color: #6b7280;
+    margin-top: auto;
 }
 
 @media (max-width: 768px) {
-    .navbar .container {
+    .app-shell {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
     }
 
-    .navbar-text {
-        display: none !important;
+    .sidebar {
+        width: 100%;
+        padding: 1rem 1.1rem;
+    }
+
+    .utility-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.45rem;
     }
 }

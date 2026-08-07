@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-	// Auto-focus the title input when the compose form is present or when the add-note modal opens
 	const titleInput = document.querySelector('.note-form input[name="title"]');
 	if (titleInput) titleInput.focus();
 
@@ -11,17 +10,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	// Initialize collapsible excerpts
+	const dateEl = document.getElementById('current-date');
+	const timeEl = document.getElementById('current-time');
+	if (dateEl && timeEl) {
+		const updateClock = () => {
+			const now = new Date();
+			dateEl.textContent = now.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+			timeEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+		};
+
+		updateClock();
+		setInterval(updateClock, 1000);
+	}
+
 	function initExcerpts() {
 		document.querySelectorAll('.excerpt').forEach((excerpt) => {
-			// remove existing control if re-initializing
 			if (excerpt.nextElementSibling && excerpt.nextElementSibling.classList && excerpt.nextElementSibling.classList.contains('read-more')) {
 				excerpt.nextElementSibling.remove();
 			}
 
-			const computed = window.getComputedStyle(excerpt);
-			const lineClamp = computed.getPropertyValue('-webkit-line-clamp');
-			// if clamped (or content overflows), add a control
 			if (excerpt.scrollHeight > excerpt.clientHeight + 4) {
 				const btn = document.createElement('button');
 				btn.type = 'button';
@@ -38,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	initExcerpts();
 
-	// Async search: fetch same page and replace notes-list
 	const searchForm = document.querySelector('.search-form');
 	if (searchForm) {
 		searchForm.addEventListener('submit', async (e) => {
@@ -66,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 });
-
 
 function renderNotes(notes) {
 	if (!notes || notes.length === 0) return '<p class="empty-state">No notes yet. Start by creating one.</p>';

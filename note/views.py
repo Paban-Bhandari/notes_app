@@ -3,6 +3,10 @@ from django.http import JsonResponse
 from .models import Note
 
 
+def about(request):
+    return render(request, "about.html")
+
+
 def home(request):
     query = request.GET.get("q", "").strip()
 

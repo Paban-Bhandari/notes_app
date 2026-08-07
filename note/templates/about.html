@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4 py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-11">
+            <div class="p-5 rounded-4 shadow-sm bg-white border border-1 border-opacity-10">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge rounded-pill bg-primary bg-opacity-15 text-primary py-2 px-3">Simple • Fast • Personal</span>
+                </div>
+                <h1 class="display-5 fw-bold mb-3">Keep your thoughts in one place</h1>
+                <p class="text-muted fs-5 mb-4">A clean note workspace for capturing ideas quickly, reviewing them later, and staying organized without clutter.</p>
+
+                <div class="row g-3">
+                    <div class="col-sm-4">
+                        <div class="p-3 rounded-4 bg-light border border-1 border-opacity-10 h-100">
+                            <h6 class="mb-2">Fast note creation</h6>
+                            <p class="small text-muted mb-0">Open the drawer, enter a title, and save in seconds.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="p-3 rounded-4 bg-light border border-1 border-opacity-10 h-100">
+                            <h6 class="mb-2">Easy filtering</h6>
+                            <p class="small text-muted mb-0">Search notes instantly and find what matters.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="p-3 rounded-4 bg-light border border-1 border-opacity-10 h-100">
+                            <h6 class="mb-2">Clean experience</h6>
+                            <p class="small text-muted mb-0">Focus on notes with a minimal, modern interface.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

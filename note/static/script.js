@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (dateEl && timeEl) {
 		const updateClock = () => {
 			const now = new Date();
-			dateEl.textContent = now.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+			dateEl.textContent = now.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 			timeEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 		};
 

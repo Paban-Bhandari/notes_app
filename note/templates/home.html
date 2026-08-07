@@ -14,9 +14,9 @@ Home
         <div class="flex flex-col gap-3 sm:flex-row">
             <form method="get" class="flex flex-col gap-2 sm:flex-row">
                 <input type="text" name="q" value="{{ query }}" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:min-w-[240px]" placeholder="Search notes...">
-                <button type="submit" class="rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">Search</button>
+                <button type="submit" class="rounded-2xl border border-orange-200 bg-white px-4 py-2.5 text-sm font-medium text-orange-700 transition hover:bg-orange-50">Search</button>
             </form>
-            <button type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700" data-open-modal>
+            <button type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-700" data-open-modal>
                 <span class="text-lg leading-none">+</span>
                 Add Note
             </button>
@@ -58,14 +58,14 @@ Home
                 {% csrf_token %}
                 <div>
                     <label class="mb-2 block text-sm font-medium text-slate-700" for="modal-title">Title</label>
-                    <input id="modal-title" type="text" name="title" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Note title" required>
+                    <input id="modal-title" type="text" name="title" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200" placeholder="Note title" required>
                 </div>
                 <div>
                     <label class="mb-2 block text-sm font-medium text-slate-700" for="modal-content">Content</label>
-                    <textarea id="modal-content" name="content" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Write your note here..." rows="6" required></textarea>
+                    <textarea id="modal-content" name="content" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200" placeholder="Write your note here..." rows="6" required></textarea>
                 </div>
                 <div class="flex flex-col gap-2 sm:flex-row">
-                    <button type="submit" class="w-full rounded-2xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700">Save note</button>
+                    <button type="submit" class="w-full rounded-2xl bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-700">Save note</button>
                     <button type="button" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50" data-close-modal>Cancel</button>
                 </div>
             </form>

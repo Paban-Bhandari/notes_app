@@ -1,15 +1,15 @@
 {% load static %}
-<nav class="fixed inset-y-0 left-0 flex w-72 flex-col border-r border-slate-200 bg-slate-900 px-4 py-5 text-slate-100" aria-label="Sidebar navigation">
+<nav class="fixed inset-y-0 left-0 flex w-72 flex-col border-r border-slate-200 bg-white px-4 py-5 text-slate-700" aria-label="Sidebar navigation">
     <a class="flex items-center gap-3 rounded-2xl px-2 py-3" href="/">
-        <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="logo-image">
+        <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="logo-image h-16 w-16">
         <span>
-            <span class="block text-lg font-semibold text-white">Quick Note</span>
-            <span class="block text-sm text-slate-400">Capture ideas effortlessly</span>
+            <span class="block text-lg font-semibold text-slate-800">Quick Note</span>
+            <span class="block text-sm text-slate-500">Capture ideas effortlessly</span>
         </span>
     </a>
 
     <div class="mt-8 space-y-2">
-        <a class="block rounded-2xl px-3 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white" href="/">Home</a>
-        <a class="block rounded-2xl px-3 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white" href="{% url 'about' %}">About</a>
+        <a class="block rounded-2xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-orange-50 hover:text-orange-600" href="/">Home</a>
+        <a class="block rounded-2xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-orange-50 hover:text-orange-600" href="{% url 'about' %}">About</a>
     </div>
 </nav>

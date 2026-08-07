@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>{% block title %}Notes App{% endblock %}</title>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-800">
+<body class="min-h-screen bg-[linear-gradient(135deg,#fff9f2_0%,#f4f8ff_100%)] text-slate-800">
     <div class="flex min-h-screen overflow-hidden">
         {% include "partials/navbar.html" %}
         <div class="ml-72 flex min-w-0 flex-1 flex-col overflow-hidden">
-            <div class="flex items-center justify-between border-b border-slate-200 bg-white/80 px-4 py-3 backdrop-blur sm:px-6">
-                <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">Workspace • Notes</div>
+            <div class="flex items-center justify-between border-b border-orange-100 bg-white/90 px-4 py-3 backdrop-blur sm:px-6">
+                <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-blue-700">Workspace • Notes</div>
                 <div class="flex items-center gap-3 text-sm font-medium text-slate-600">
                     <span id="current-date"></span>
                     <span class="text-slate-300">•</span>

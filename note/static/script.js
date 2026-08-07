@@ -3,12 +3,37 @@ document.addEventListener('DOMContentLoaded', () => {
 	if (titleInput) titleInput.focus();
 
 	const addNoteModalEl = document.getElementById('addNoteModal');
-	if (addNoteModalEl) {
-		addNoteModalEl.addEventListener('shown.bs.modal', () => {
+	const openModalBtn = document.querySelector('[data-open-modal]');
+	const closeModalBtns = document.querySelectorAll('[data-close-modal]');
+
+	const openModal = () => {
+		if (addNoteModalEl) {
+			addNoteModalEl.classList.remove('hidden');
+			addNoteModalEl.classList.add('flex');
 			const modalTitleInput = addNoteModalEl.querySelector('input[name="title"]');
 			if (modalTitleInput) modalTitleInput.focus();
+		}
+	};
+
+	const closeModal = () => {
+		if (addNoteModalEl) {
+			addNoteModalEl.classList.remove('flex');
+			addNoteModalEl.classList.add('hidden');
+		}
+	};
+
+	if (openModalBtn) openModalBtn.addEventListener('click', openModal);
+	closeModalBtns.forEach((btn) => btn.addEventListener('click', closeModal));
+
+	if (addNoteModalEl) {
+		addNoteModalEl.addEventListener('click', (event) => {
+			if (event.target === addNoteModalEl) closeModal();
 		});
 	}
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape') closeModal();
+	});
 
 	const dateEl = document.getElementById('current-date');
 	const timeEl = document.getElementById('current-time');
@@ -23,29 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		setInterval(updateClock, 1000);
 	}
 
-	function initExcerpts() {
-		document.querySelectorAll('.excerpt').forEach((excerpt) => {
-			if (excerpt.nextElementSibling && excerpt.nextElementSibling.classList && excerpt.nextElementSibling.classList.contains('read-more')) {
-				excerpt.nextElementSibling.remove();
-			}
-
-			if (excerpt.scrollHeight > excerpt.clientHeight + 4) {
-				const btn = document.createElement('button');
-				btn.type = 'button';
-				btn.className = 'read-more';
-				btn.textContent = 'Read more';
-				btn.addEventListener('click', () => {
-					const expanded = excerpt.classList.toggle('expanded');
-					btn.textContent = expanded ? 'Show less' : 'Read more';
-				});
-				excerpt.after(btn);
-			}
-		});
-	}
-
-	initExcerpts();
-
-	const searchForm = document.querySelector('.search-form');
+	const searchForm = document.querySelector('form[method="get"]');
 	if (searchForm) {
 		searchForm.addEventListener('submit', async (e) => {
 			e.preventDefault();
@@ -61,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				const curList = document.querySelector('.notes-list');
 				if (data && Array.isArray(data.notes) && curList) {
 					curList.innerHTML = renderNotes(data.notes);
-					initExcerpts();
 				} else {
 					window.location.assign(url.toString());
 				}
@@ -74,22 +76,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderNotes(notes) {
-	if (!notes || notes.length === 0) return '<p class="empty-state">No notes yet. Start by creating one.</p>';
+	if (!notes || notes.length === 0) return '<div class="rounded-2xl border border-dashed border-slate-200 bg-white px-4 py-6 text-sm text-slate-500">No notes yet. Start by creating one.</div>';
 	return notes
 		.map((n) => {
 			const title = escapeHtml(n.title);
 			const content = escapeHtml(n.content);
 			return `
-				<article class="note-card">
-					<div class="note-card-header">
-						<h3>${title}</h3>
-						<div class="note-actions">
-							<a class="btn tiny" href="/notes/${n.id}/edit/">Edit</a>
-							<a class="btn tiny danger" href="/notes/${n.id}/delete/" onclick="return confirm('Delete this note?')">Delete</a>
+				<article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+					<div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+						<div>
+							<h3 class="text-lg font-semibold text-slate-900">${title}</h3>
+							<p class="mt-2 text-sm leading-6 text-slate-600">${content}</p>
+							<p class="mt-3 text-xs uppercase tracking-[0.2em] text-slate-400">Created: ${n.created_at}</p>
+						</div>
+						<div class="flex gap-2">
+							<a class="rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50" href="/notes/${n.id}/edit/">Edit</a>
+							<a class="rounded-xl bg-rose-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-rose-700" href="/notes/${n.id}/delete/" onclick="return confirm('Delete this note?')">Delete</a>
 						</div>
 					</div>
-					<p class="excerpt">${content}</p>
-					<div class="meta"><small>Created: ${n.created_at}</small></div>
 				</article>
 			`;
 		})

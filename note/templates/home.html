@@ -5,78 +5,70 @@ Home
 {% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="d-flex align-items-center justify-content-between mb-4 gap-3">
+<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-            <h2 class="h4 mb-1">Saved Notes</h2>
-            <p class="text-muted mb-0">{{ notes|length }} total</p>
+            <h2 class="text-2xl font-semibold text-slate-900">Saved Notes</h2>
+            <p class="text-sm text-slate-500">{{ notes|length }} total</p>
         </div>
-        <div class="d-flex gap-2 flex-wrap">
-            <form method="get" class="d-flex gap-2 align-items-center mb-0">
-                <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search notes...">
-                <button type="submit" class="btn btn-outline-primary">Search</button>
+        <div class="flex flex-col gap-3 sm:flex-row">
+            <form method="get" class="flex flex-col gap-2 sm:flex-row">
+                <input type="text" name="q" value="{{ query }}" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:min-w-[240px]" placeholder="Search notes...">
+                <button type="submit" class="rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">Search</button>
             </form>
-            <button type="button" class="btn btn-primary btn-lg d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addNoteModal">
-                <span class="fs-4">+</span>
+            <button type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700" data-open-modal>
+                <span class="text-lg leading-none">+</span>
                 Add Note
             </button>
         </div>
     </div>
 
-    <div class="notes-list">
+    <div class="notes-list space-y-3">
         {% if notes %}
-            <div class="row g-3">
-                {% for note in notes %}
-                    <div class="col-12">
-                        <article class="note-card card border-0 shadow-sm overflow-hidden">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title mb-1">{{ note.title }}</h5>
-                                    <div class="d-flex gap-2">
-                                        <a class="btn btn-sm btn-outline-secondary" href="{% url 'edit_note' note.id %}">Edit</a>
-                                        <a class="btn btn-sm btn-danger" href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
-                                    </div>
-                                </div>
-                                <p class="card-text text-secondary mb-2">{{ note.content }}</p>
-                                <p class="text-muted small mb-0">Created: {{ note.created_at|date:"M d, Y H:i" }}</p>
-                            </div>
-                        </article>
+            {% for note in notes %}
+                <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-900">{{ note.title }}</h3>
+                            <p class="mt-2 text-sm leading-6 text-slate-600">{{ note.content }}</p>
+                            <p class="mt-3 text-xs uppercase tracking-[0.2em] text-slate-400">Created: {{ note.created_at|date:"M d, Y H:i" }}</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a class="rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50" href="{% url 'edit_note' note.id %}">Edit</a>
+                            <a class="rounded-xl bg-rose-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-rose-700" href="{% url 'delete_note' note.id %}" onclick="return confirm('Delete this note?')">Delete</a>
+                        </div>
                     </div>
-                {% endfor %}
-            </div>
+                </article>
+            {% endfor %}
         {% else %}
-            <div class="alert alert-info mb-0">No notes yet. Start by creating one.</div>
+            <div class="rounded-2xl border border-dashed border-slate-200 bg-white px-4 py-6 text-sm text-slate-500">No notes yet. Start by creating one.</div>
         {% endif %}
     </div>
 
-    <div class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="addNoteModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 shadow-lg">
-                <div class="modal-header border-0">
-                    <div>
-                        <h5 class="modal-title" id="addNoteModalLabel">Add Note</h5>
-                        <p class="text-muted mb-0">Quickly capture a new note.</p>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div id="addNoteModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/50 px-4">
+        <div class="w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl">
+            <div class="mb-4 flex items-start justify-between gap-3">
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900">Add Note</h3>
+                    <p class="mt-1 text-sm text-slate-500">Quickly capture a new note.</p>
                 </div>
-                <div class="modal-body pt-0">
-                    <form method="post" class="note-form">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label class="form-label" for="modal-title">Title</label>
-                            <input id="modal-title" type="text" name="title" class="form-control form-control-lg" placeholder="Note title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="modal-content">Content</label>
-                            <textarea id="modal-content" name="content" class="form-control" placeholder="Write your note here..." rows="6" required></textarea>
-                        </div>
-                        <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-primary w-100">Save note</button>
-                            <button type="button" class="btn btn-outline-secondary w-100" data-bs-dismiss="modal">Cancel</button>
-                        </div>
-                    </form>
-                </div>
+                <button type="button" class="rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" data-close-modal aria-label="Close">×</button>
             </div>
+            <form method="post" class="note-form space-y-4">
+                {% csrf_token %}
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-slate-700" for="modal-title">Title</label>
+                    <input id="modal-title" type="text" name="title" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Note title" required>
+                </div>
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-slate-700" for="modal-content">Content</label>
+                    <textarea id="modal-content" name="content" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="Write your note here..." rows="6" required></textarea>
+                </div>
+                <div class="flex flex-col gap-2 sm:flex-row">
+                    <button type="submit" class="w-full rounded-2xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700">Save note</button>
+                    <button type="button" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50" data-close-modal>Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

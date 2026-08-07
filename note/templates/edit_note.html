@@ -5,27 +5,21 @@ Edit Note
 {% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-sm rounded-4">
-                <div class="card-body p-5">
-                    <h2 class="mb-4">Edit Note</h2>
-                    <form method="post" class="note-form">
-                        {% csrf_token %}
-                        <div class="mb-4">
-                            <label class="form-label" for="title">Title</label>
-                            <input id="title" type="text" name="title" value="{{ note.title }}" class="form-control form-control-lg" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label" for="content">Content</label>
-                            <textarea id="content" name="content" rows="6" class="form-control" required>{{ note.content }}</textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-lg">Update Note</button>
-                    </form>
-                </div>
+<div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <h2 class="mb-6 text-2xl font-semibold text-slate-900">Edit Note</h2>
+        <form method="post" class="note-form space-y-5">
+            {% csrf_token %}
+            <div>
+                <label class="mb-2 block text-sm font-medium text-slate-700" for="title">Title</label>
+                <input id="title" type="text" name="title" value="{{ note.title }}" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" required>
             </div>
-        </div>
+            <div>
+                <label class="mb-2 block text-sm font-medium text-slate-700" for="content">Content</label>
+                <textarea id="content" name="content" rows="8" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" required>{{ note.content }}</textarea>
+            </div>
+            <button type="submit" class="rounded-2xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700">Update Note</button>
+        </form>
     </div>
 </div>
 {% endblock %}

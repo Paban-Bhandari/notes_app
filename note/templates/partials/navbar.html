@@ -1,11 +1,11 @@
 {% load static %}
-<nav class="fixed inset-y-0 left-0 flex w-72 flex-col border-r border-slate-200 bg-gradient-to-b from-sky-500 via-sky-400 to-cyan-200 px-5 py-6 text-slate-900 shadow-lg ring-1 ring-slate-200 overflow-hidden" aria-label="Sidebar navigation">
+<nav class="fixed inset-y-0 left-0 flex w-72 flex-col border-r border-slate-200 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 px-5 py-6 text-slate-900 shadow-lg ring-1 ring-slate-200 overflow-hidden" aria-label="Sidebar navigation">
     <div class="mb-6">
         <a class="flex items-center gap-3 rounded-[1.8rem] bg-white/10 p-4 shadow-sm shadow-black/10 transition hover:bg-white/15" href="/" aria-label="Go to home">
             <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="logo-image h-16 w-16 rounded-2xl border border-white/20 bg-white p-1">
             <div class="space-y-1">
-                <p class="text-xl font-semibold text-slate-900">Quick<span class="font-bold text-sky-700">Note</span></p>
-                <p class="text-sm text-slate-700">Capture ideas effortlessly</p>
+                <p class="text-xl font-semibold text-white">Quick<span class="font-bold text-orange-100">Note</span></p>
+                <p class="text-sm text-white/80">Capture ideas effortlessly</p>
             </div>
         </a>
     </div>
@@ -13,7 +13,7 @@
     <div class="mt-6 border-t border-slate-200/70"></div>
 
     <div class="mt-5 space-y-2">
-        <h2 class="text-base font-bold uppercase tracking-[0.3em] text-slate-700">Quick views</h2>
+        <h2 class="text-base font-bold uppercase tracking-[0.3em] text-white">Quick views</h2>
         <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'all' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=all">All notes</a>
         <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'important' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=important">Bookmarks</a>
         <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'archived' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=archived">Archive</a>
@@ -23,7 +23,7 @@
     <div class="mt-6 border-t border-slate-200/70"></div>
 
     <div class="mt-5 space-y-2">
-        <h2 class="text-base font-bold uppercase tracking-[0.3em] text-slate-700">Account</h2>
+        <h2 class="text-base font-bold uppercase tracking-[0.3em] text-white">Account</h2>
         {% if user.is_authenticated %}
             <div class="rounded-2xl bg-slate-100/80 px-4 py-3 text-sm font-medium text-slate-900">Signed in as {{ user.username }}</div>
             <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white" href="{% url 'logout' %}">Logout</a>

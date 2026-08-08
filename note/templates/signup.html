@@ -6,22 +6,22 @@ Sign up
 
 {% block content %}
 <div class="mx-auto max-w-md px-4 py-12 sm:px-6 lg:px-8">
-    <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <div class="bg-gradient-to-r from-sky-500 to-cyan-400 px-8 py-10 text-slate-900">
+    <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+        <div class="bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600 px-8 py-10 text-white shadow-inner">
             <h1 class="text-3xl font-semibold">Create your account</h1>
-            <p class="mt-2 text-sm text-slate-700">Sign up to save your notes and access them from anywhere.</p>
+            <p class="mt-2 text-sm text-orange-100/90">Sign up to save your notes and access them from anywhere.</p>
         </div>
         <div class="p-8">
-            <form method="post" class="space-y-6">
+            <form method="post" class="space-y-6 auth-form">
                 {% csrf_token %}
                 {% if form.non_field_errors %}
                     <div class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{{ form.non_field_errors }}</div>
                 {% endif %}
                 <div>
-                    <label class="block text-sm font-medium text-slate-700" for="id_username">Username</label>
-                    {{ form.username }}
-                    {% if form.username.errors %}
-                        <p class="mt-1 text-sm text-rose-600">{{ form.username.errors|join:", " }}</p>
+                    <label class="block text-sm font-medium text-slate-700" for="id_email">Email</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <p class="mt-1 text-sm text-rose-600">{{ form.email.errors|join:", " }}</p>
                     {% endif %}
                 </div>
                 <div>
@@ -38,9 +38,9 @@ Sign up
                         <p class="mt-1 text-sm text-rose-600">{{ form.password2.errors|join:", " }}</p>
                     {% endif %}
                 </div>
-                <button type="submit" class="w-full rounded-2xl bg-sky-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-sky-600">Create account</button>
+                <button type="submit" class="w-full rounded-2xl bg-gradient-to-r from-orange-600 to-orange-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-200/30 transition hover:from-orange-700 hover:to-orange-600">Create account</button>
             </form>
-            <p class="mt-6 text-center text-sm text-slate-400">Already have an account? <a href="{% url 'login' %}" class="font-semibold text-sky-300 hover:text-sky-200">Sign in</a>.</p>
+            <p class="mt-6 text-center text-sm text-slate-500">Already have an account? <a href="{% url 'login' %}" class="font-semibold text-orange-600 hover:text-orange-700">Sign in</a>.</p>
         </div>
     </div>
 </div>

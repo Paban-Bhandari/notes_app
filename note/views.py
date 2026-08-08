@@ -1,9 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import JsonResponse
 from django.urls import reverse
+from .forms import CustomUserCreationForm, EmailAuthenticationForm
 from .models import Note
 
 
@@ -70,13 +70,13 @@ def login_view(request):
         return redirect("home")
 
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
+        form = EmailAuthenticationForm(request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             return redirect("home")
     else:
-        form = AuthenticationForm(request)
+        form = EmailAuthenticationForm()
 
     return render(request, "login.html", {"form": form})
 
@@ -86,13 +86,13 @@ def signup_view(request):
         return redirect("home")
 
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect("home")
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
 
     return render(request, "signup.html", {"form": form})
 

@@ -65,6 +65,10 @@ def home(request):
     })
 
 
+def about(request):
+    return render(request, "about.html")
+
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect("home")
@@ -165,3 +169,10 @@ def delete_permanently(request, note_id):
     note = get_object_or_404(Note, id=note_id, owner=request.user)
     note.delete()
     return redirect(request.META.get("HTTP_REFERER", reverse("home")))
+
+
+@login_required(login_url='login')
+def empty_trash(request):
+    if request.method == 'POST':
+        Note.objects.filter(owner=request.user, deleted=True).delete()
+    return redirect(f"{reverse('home')}?view=trash")

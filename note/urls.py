@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path("", views.home, name="home"),
+    path("about/", views.about, name="about"),
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
     path("signup/", views.signup_view, name="signup"),
@@ -12,4 +13,5 @@ urlpatterns = [
     path("notes/<int:note_id>/delete-permanently/", views.delete_permanently, name="delete_permanently"),
     path("notes/<int:note_id>/archive/", views.archive_note, name="archive_note"),
     path("notes/<int:note_id>/toggle-important/", views.toggle_important_note, name="toggle_important_note"),
+    path("trash/empty/", views.empty_trash, name="empty_trash"),
 ]

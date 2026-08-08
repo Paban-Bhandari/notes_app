@@ -1,7 +1,7 @@
 {% load static %}
 <nav class="fixed inset-y-0 left-0 flex w-72 flex-col border-r border-slate-200 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 px-5 py-6 text-slate-900 shadow-lg ring-1 ring-slate-200 overflow-hidden" aria-label="Sidebar navigation">
     <div class="mb-6">
-        <a class="flex items-center gap-3 rounded-[1.8rem] bg-white/10 p-4 shadow-sm shadow-black/10 transition hover:bg-white/15" href="/" aria-label="Go to home">
+        <a class="flex items-center gap-3 rounded-[1.8rem] bg-white/10 p-4 shadow-sm shadow-black/10 transition hover:bg-white/15" href="{% url 'about' %}" aria-label="About Quick Note">
             <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="logo-image h-16 w-16 rounded-2xl border border-white/20 bg-white p-1">
             <div class="space-y-1">
                 <p class="text-xl font-semibold text-white">Quick<span class="font-bold text-orange-100">Note</span></p>
@@ -14,10 +14,10 @@
 
     <div class="mt-5 space-y-2">
         <h2 class="text-base font-bold uppercase tracking-[0.3em] text-white">Quick views</h2>
-        <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'all' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=all">All notes</a>
-        <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'important' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=important">Bookmarks</a>
-        <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'archived' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=archived">Archive</a>
-        <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'trash' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=trash">Trash</a>
+        <a class="flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'all' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=all"><i class="fa-solid fa-list" aria-hidden="true"></i><span>All notes</span></a>
+        <a class="flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'important' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=important"><i class="fa-regular fa-bookmark" aria-hidden="true"></i><span>Bookmarks</span></a>
+        <a class="flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'archived' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=archived"><i class="fa-solid fa-box-archive" aria-hidden="true"></i><span>Archive</span></a>
+        <a class="flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white {% if view_filter|default:'all' == 'trash' %}bg-slate-100 font-semibold{% endif %}" href="{% url 'home' %}?view=trash"><i class="fa-solid fa-trash" aria-hidden="true"></i><span>Trash</span></a>
     </div>
 
     <div class="mt-6 border-t border-slate-200/70"></div>
@@ -25,11 +25,11 @@
     <div class="mt-5 space-y-2">
         <h2 class="text-base font-bold uppercase tracking-[0.3em] text-white">Account</h2>
         {% if user.is_authenticated %}
-            <div class="rounded-2xl bg-slate-100/80 px-4 py-3 text-sm font-medium text-slate-900">Signed in as {{ user.username }}</div>
-            <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white" href="{% url 'logout' %}">Logout</a>
+            <div class="flex items-center gap-3 rounded-2xl bg-slate-100/80 px-4 py-3 text-sm font-medium text-slate-900"><i class="fa-solid fa-user" aria-hidden="true"></i><span>Signed in as {{ user.username }}</span></div>
+            <a class="flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i><span>Logout</span></a>
         {% else %}
-            <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white" href="{% url 'login' %}">Sign in</a>
-            <a class="block rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white" href="{% url 'signup' %}">Sign up</a>
+            <a class="flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white" href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i><span>Sign in</span></a>
+            <a class="flex items-center gap-3 rounded-2xl bg-white/90 px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-white" href="{% url 'signup' %}"><i class="fa-solid fa-user-plus" aria-hidden="true"></i><span>Sign up</span></a>
         {% endif %}
     </div>
 

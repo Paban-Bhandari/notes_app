@@ -136,7 +136,6 @@ function renderNotes(notes) {
         .map((n) => {
             const title = escapeHtml(n.title);
             const content = escapeHtml(n.content);
-            const folder = n.folder ? `<span class="rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">${escapeHtml(n.folder)}</span>` : '';
             const important = n.important ? '<span class="rounded-full bg-orange-100 px-2 py-1 text-xs font-semibold text-orange-700">Bookmarked</span>' : '';
             const archiveLabel = n.archived ? 'Restore' : 'Archive';
             const importantLabel = n.important ? 'Unbookmark' : 'Bookmark';
@@ -147,7 +146,6 @@ function renderNotes(notes) {
                         <div class="space-y-4 w-full sm:max-w-[65%]">
                             <div class="flex flex-wrap gap-2 items-center">
                                 <h3 class="text-lg font-semibold text-slate-900">${title}</h3>
-                                ${folder}
                                 ${important}
                             </div>
                             <p class="text-sm leading-6 text-slate-600">${content}</p>

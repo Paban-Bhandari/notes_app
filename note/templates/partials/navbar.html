@@ -13,7 +13,7 @@
     <div class="border-t border-white/20"></div>
 
     <div class="mt-6 space-y-2">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.3em] text-orange-100">Navigation</h2>
+        <h2 class="text-base font-bold uppercase tracking-[0.3em] text-white">Navigation</h2>
         <a class="block rounded-2xl bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10" href="/">Home</a>
         <a class="block rounded-2xl bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10" href="{% url 'about' %}">About</a>
     </div>
@@ -21,16 +21,11 @@
     <div class="mt-6 border-t border-white/20"></div>
 
     <div class="mt-5 space-y-2">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.3em] text-orange-100">Quick views</h2>
-        <a class="block rounded-2xl px-4 py-3 text-sm font-medium transition {% if active_view == 'all' %}bg-white/20 text-white{% else %}text-white hover:bg-white/10{% endif %}" href="{% url 'home' %}?view=all">All notes</a>
-        <a class="block rounded-2xl px-4 py-3 text-sm font-medium transition {% if active_view == 'important' %}bg-white/20 text-white{% else %}text-white hover:bg-white/10{% endif %}" href="{% url 'home' %}?view=important">Bookmarks</a>
-        <a class="block rounded-2xl px-4 py-3 text-sm font-medium transition {% if active_view == 'archived' %}bg-white/20 text-white{% else %}text-white hover:bg-white/10{% endif %}" href="{% url 'home' %}?view=archived">Archive</a>
+        <h2 class="text-base font-bold uppercase tracking-[0.3em] text-white">Quick views</h2>
+        <a class="block rounded-2xl bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 {% if view_filter|default:'all' == 'all' %}bg-white/20 text-white{% endif %}" href="{% url 'home' %}?view=all">All notes</a>
+        <a class="block rounded-2xl bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 {% if view_filter|default:'all' == 'important' %}bg-white/20 text-white{% endif %}" href="{% url 'home' %}?view=important">Bookmarks</a>
+        <a class="block rounded-2xl bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 {% if view_filter|default:'all' == 'archived' %}bg-white/20 text-white{% endif %}" href="{% url 'home' %}?view=archived">Archive</a>
+        <a class="block rounded-2xl bg-white/5 px-4 py-3 text-sm font-medium text-white transition hover:bg-white/10 {% if view_filter|default:'all' == 'trash' %}bg-white/20 text-white{% endif %}" href="{% url 'home' %}?view=trash">Trash</a>
     </div>
 
-    <div class="mt-6 border-t border-white/20"></div>
-
-    <div class="mt-5 space-y-2">
-        <h2 class="text-xs font-semibold uppercase tracking-[0.3em] text-orange-100">Folders</h2>
-        <a class="block rounded-2xl px-4 py-3 text-sm font-medium transition {% if request.resolver_match.url_name == 'folder_list' %}bg-white/20 text-white{% else %}text-white hover:bg-white/10{% endif %}" href="{% url 'folder_list' %}">Browse folders</a>
-    </div>
 </nav>

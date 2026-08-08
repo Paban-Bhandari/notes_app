@@ -18,15 +18,6 @@ Edit Note
                 <label class="mb-2 block text-sm font-medium text-slate-700" for="content">Content</label>
                 <textarea id="content" name="content" rows="8" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200" required>{{ note.content }}</textarea>
             </div>
-            <div>
-                <label class="mb-2 block text-sm font-medium text-slate-700" for="folder">Folder</label>
-                <select id="folder" name="folder" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200">
-                    <option value="">No folder</option>
-                    {% for folder in folders %}
-                        <option value="{{ folder.id }}" {% if note.folder and folder.id == note.folder.id %}selected{% endif %}>{{ folder.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
             <div class="flex items-center gap-3">
                 <label class="inline-flex items-center gap-2 text-sm font-medium text-slate-700">
                     <input type="checkbox" name="important" class="h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500" {% if note.important %}checked{% endif %}>

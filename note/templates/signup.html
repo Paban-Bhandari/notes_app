@@ -5,18 +5,35 @@ Sign up
 {% endblock %}
 
 {% block content %}
-<div class="mx-auto max-w-md px-4 py-12 sm:px-6 lg:px-8">
-    <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
-        <div class="bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600 px-8 py-10 text-white shadow-inner">
-            <h1 class="text-3xl font-semibold">Create your account</h1>
-            <p class="mt-2 text-sm text-orange-100/90">Sign up to save your notes and access them from anywhere.</p>
+<div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl lg:grid-cols-2">
+        <div class="bg-gradient-to-br from-orange-600 via-orange-500 to-orange-600 px-8 py-10 text-white sm:px-10 sm:py-12">
+            <div class="max-w-xl">
+                <h1 class="text-4xl font-semibold tracking-tight">Create your account</h1>
+                <p class="mt-4 text-base leading-7 text-orange-100/90">Sign up to save your notes and access them from anywhere. Keep your ideas organized, backed up, and available on every device.</p>
+                <div class="mt-10 space-y-5">
+                    <div class="rounded-3xl bg-white/10 p-5">
+                        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-100">Easy access</p>
+                        <p class="mt-2 text-sm text-orange-100/90">Store notes securely and find them instantly.</p>
+                    </div>
+                    <div class="rounded-3xl bg-white/10 p-5">
+                        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-100">Private & personal</p>
+                        <p class="mt-2 text-sm text-orange-100/90">Your notes are only visible to you after signing in.</p>
+                    </div>
+                    <div class="rounded-3xl bg-white/10 p-5">
+                        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-orange-100">Anytime sync</p>
+                        <p class="mt-2 text-sm text-orange-100/90">Create, bookmark, archive, and restore notes with ease.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="p-8">
-            <form method="post" class="space-y-6 auth-form">
-                {% csrf_token %}
-                {% if form.non_field_errors %}
-                    <div class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{{ form.non_field_errors }}</div>
-                {% endif %}
+        <div class="flex items-center justify-center p-8 sm:p-10">
+            <div class="w-full max-w-md">
+                <form method="post" class="space-y-6 auth-form">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{{ form.non_field_errors }}</div>
+                    {% endif %}
                 <div>
                     <label class="block text-sm font-medium text-slate-700" for="id_email">Email</label>
                     {{ form.email }}

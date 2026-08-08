@@ -199,7 +199,7 @@ function renderNotes(notes) {
             const important = n.important;
             const deleted = n.deleted;
 
-            const badge = important && !deleted ? '<span class="rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-700">Bookmarked</span>' : '';
+            const badge = important && !deleted ? '<span class="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700">Bookmarked</span>' : '';
 
             const archiveIcon = archived
                 ? '<i class="fa-solid fa-box-open" aria-hidden="true"></i>'

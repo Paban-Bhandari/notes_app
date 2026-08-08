@@ -173,8 +173,10 @@ body {
 }
 
 .footer {
-    color: #6b7280;
+    color: #52525b;
     margin-top: auto;
+    background: rgba(255, 255, 255, 0.88);
+    border-top: 1px solid rgba(249, 115, 22, 0.2);
 }
 
 @media (max-width: 768px) {

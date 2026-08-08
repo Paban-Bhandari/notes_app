@@ -1,4 +1,13 @@
-<footer class="border-t border-slate-200 bg-white/70 px-6 py-8 text-center text-sm text-slate-500">
-    <p class="mb-1 text-slate-600">Quick Note • Built with Django</p>
-    <p class="mb-0">A polished note-taking experience for fast idea capture.</p>
+<footer class="border-t border-orange-100 bg-white/80 px-6 py-10 backdrop-blur-sm text-slate-700">
+    <div class="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div class="space-y-2 text-center sm:text-left">
+            <p class="text-lg font-semibold text-slate-900">Quick Note</p>
+            <p class="text-sm text-slate-500">A polished note-taking experience for fast idea capture.</p>
+        </div>
+        <div class="grid gap-3 sm:auto-cols-max sm:grid-flow-col text-sm text-slate-500">
+            <a href="{% url 'home' %}" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 transition hover:border-orange-200 hover:bg-orange-50 hover:text-orange-700">Home</a>
+            <a href="{% url 'about' %}" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 transition hover:border-orange-200 hover:bg-orange-50 hover:text-orange-700">About</a>
+        </div>
+    </div>
+    <div class="mt-6 text-center text-xs text-slate-400">Built with Django and a refined note workflow.</div>
 </footer>

@@ -217,3 +217,51 @@ body {
         gap: 0.45rem;
     }
 }
+
+/* Instant CSS tooltips for icon buttons */
+.tooltip {
+    position: relative;
+}
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(100% + 8px);
+    background: rgba(15, 23, 42, 0.92);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.08s linear;
+    z-index: 60;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.32);
+}
+.tooltip::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(100% + 2px);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(15, 23, 42, 0.92);
+    opacity: 0;
+    transition: opacity 0.08s linear;
+    z-index: 61;
+}
+.tooltip:hover::after,
+.tooltip:focus::after,
+.tooltip:active::after {
+    opacity: 1;
+}
+.tooltip:hover::before,
+.tooltip:focus::before,
+.tooltip:active::before {
+    opacity: 1;
+}

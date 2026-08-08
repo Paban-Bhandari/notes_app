@@ -83,14 +83,20 @@ Home
                                         <button type="submit" class="rounded-xl bg-rose-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-rose-700">Delete permanently</button>
                                     </form>
                                 {% else %}
-                                    <a class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" href="{% url 'edit_note' note.id %}">Edit</a>
-                                    <a class="rounded-xl border border-sky-500 bg-sky-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-sky-600" href="{% url 'archive_note' note.id %}">{% if note.archived %}Unarchive{% else %}Archive{% endif %}</a>
+                                    <a class="tooltip inline-flex items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" href="{% url 'edit_note' note.id %}" aria-label="Edit note" data-tooltip="Edit"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></a>
+                                    <a class="tooltip inline-flex items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" href="{% url 'archive_note' note.id %}" aria-label="{% if note.archived %}Unarchive{% else %}Archive{% endif %}" data-tooltip="{% if note.archived %}Unarchive{% else %}Archive{% endif %}">{% if note.archived %}<i class="fa-solid fa-box-open" aria-hidden="true"></i>{% else %}<i class="fa-solid fa-box-archive" aria-hidden="true"></i>{% endif %}</a>
                                     {% if not note.archived %}
-                                        <a class="rounded-xl border border-sky-200 bg-sky-100 px-3 py-2 text-sm font-medium text-sky-700 transition hover:bg-sky-200" href="{% url 'toggle_important_note' note.id %}">{% if note.important %}Unbookmark{% else %}Bookmark{% endif %}</a>
+                                        <a class="tooltip inline-flex items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" href="{% url 'toggle_important_note' note.id %}" aria-label="{% if note.important %}Remove bookmark{% else %}Bookmark{% endif %}" data-tooltip="{% if note.important %}Remove bookmark{% else %}Bookmark{% endif %}">
+                                            {% if note.important %}
+                                                <i class="fa-solid fa-bookmark" aria-hidden="true"></i>
+                                            {% else %}
+                                                <i class="fa-regular fa-bookmark" aria-hidden="true"></i>
+                                            {% endif %}
+                                        </a>
                                     {% endif %}
                                     <form method="post" action="{% url 'delete_note' note.id %}" class="inline" data-confirm="Delete this note?" data-confirm-class="confirm-danger">
                                         {% csrf_token %}
-                                        <button type="submit" class="rounded-xl bg-rose-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-rose-700">Delete</button>
+                                        <button type="submit" class="tooltip inline-flex items-center justify-center rounded-xl bg-rose-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-rose-700" aria-label="Delete note" data-tooltip="Delete"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
                                     </form>
                                 {% endif %}
                             </div>

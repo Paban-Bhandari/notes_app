@@ -54,9 +54,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmModalCancel = document.getElementById('confirmModalCancel');
     let activeConfirmForm = null;
 
+    const confirmStyles = {
+        'confirm-success': {
+            add: ['bg-green-600', 'hover:bg-green-700'],
+            remove: ['bg-rose-600', 'hover:bg-rose-700'],
+        },
+        'confirm-danger': {
+            add: ['bg-rose-600', 'hover:bg-rose-700'],
+            remove: ['bg-green-600', 'hover:bg-green-700'],
+        },
+    };
+
     const openConfirmModal = (message, form) => {
-        if (!confirmModal || !confirmModalMessageEl) return;
+        if (!confirmModal || !confirmModalMessageEl || !confirmModalConfirm) return;
         confirmModalMessageEl.textContent = message;
+        confirmModalConfirm.textContent = form.dataset.confirmButton || 'Delete';
+
+        const confirmClass = form.dataset.confirmClass || 'confirm-danger';
+        if (confirmStyles[confirmClass]) {
+            confirmModalConfirm.classList.remove(...confirmStyles['confirm-success'].remove, ...confirmStyles['confirm-danger'].remove);
+            confirmModalConfirm.classList.remove('confirm-success', 'confirm-danger');
+            confirmModalConfirm.classList.add(...confirmStyles[confirmClass].add);
+        }
+
         activeConfirmForm = form;
         confirmModal.classList.remove('hidden');
         confirmModal.classList.add('flex');
@@ -64,10 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const closeConfirmModal = () => {
-        if (!confirmModal) return;
+        if (!confirmModal || !confirmModalConfirm) return;
         confirmModal.classList.remove('flex');
         confirmModal.classList.add('hidden');
         confirmModal.setAttribute('aria-hidden', 'true');
+        confirmModalConfirm.textContent = 'Delete';
+        confirmModalConfirm.classList.remove(...confirmStyles['confirm-success'].add, ...confirmStyles['confirm-danger'].add);
+        confirmModalConfirm.classList.add(...confirmStyles['confirm-danger'].add);
         activeConfirmForm = null;
     };
 

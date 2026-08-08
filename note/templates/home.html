@@ -53,11 +53,11 @@ Home
                         </div>
                         <div class="flex flex-wrap gap-2">
                             {% if view_filter == 'trash' %}
-                                <form method="post" action="{% url 'restore_note' note.id %}" class="inline" data-confirm="Restore this note?">
+                                <form method="post" action="{% url 'restore_note' note.id %}" class="inline" data-confirm="Restore this note?" data-confirm-button="Restore" data-confirm-class="confirm-success">
                                     {% csrf_token %}
                                     <button type="submit" class="rounded-xl border border-green-200 bg-green-50 px-3 py-2 text-sm font-medium text-green-700 transition hover:bg-green-100">Restore</button>
                                 </form>
-                                <form method="post" action="{% url 'delete_permanently' note.id %}" class="inline" data-confirm="Permanently delete this note?">
+                                <form method="post" action="{% url 'delete_permanently' note.id %}" class="inline" data-confirm="Permanently delete this note?" data-confirm-button="Delete permanently" data-confirm-class="confirm-danger">
                                     {% csrf_token %}
                                     <button type="submit" class="rounded-xl bg-rose-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-rose-700">Delete permanently</button>
                                 </form>
@@ -67,7 +67,7 @@ Home
                                 {% if not note.archived %}
                                     <a class="rounded-xl border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 transition hover:bg-blue-100" href="{% url 'toggle_important_note' note.id %}">{% if note.important %}Unbookmark{% else %}Bookmark{% endif %}</a>
                                 {% endif %}
-                                <form method="post" action="{% url 'delete_note' note.id %}" class="inline" data-confirm="Delete this note?">
+                                <form method="post" action="{% url 'delete_note' note.id %}" class="inline" data-confirm="Delete this note?" data-confirm-class="confirm-danger">
                                     {% csrf_token %}
                                     <button type="submit" class="rounded-xl bg-rose-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-rose-700">Delete</button>
                                 </form>

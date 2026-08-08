@@ -12,17 +12,21 @@
     <div class="flex min-h-screen overflow-hidden">
         {% include "partials/navbar.html" %}
         <div class="ml-72 flex min-w-0 flex-1 flex-col overflow-hidden">
-            <div class="flex items-center justify-between border-b border-orange-100 bg-white/90 px-4 py-3 backdrop-blur sm:px-6">
-                <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-blue-700">Workspace • Notes</div>
-                <div class="flex items-center gap-3 text-sm font-medium text-slate-600">
-                    <span id="current-date"></span>
-                    <span class="text-slate-300">•</span>
-                    <span id="current-time"></span>
+            <div class="fixed top-0 left-72 right-0 z-40 flex items-center justify-between border-b border-blue-800/40 bg-blue-950/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6 text-white">
+                <div class="text-[11px] font-semibold uppercase tracking-[0.25em]">Workspace • Notes</div>
+                <div class="flex items-center gap-3 text-sm font-medium">
+                    <span id="current-date" class="text-white"></span>
+                    <span class="text-white">•</span>
+                    <span id="current-time" class="text-white"></span>
                 </div>
             </div>
-            <main class="flex-1 overflow-y-auto">
-                {% block content %}{% endblock %}
-                {% include "partials/footer.html" %}
+            <main class="flex-1 overflow-y-auto pt-16">
+                <div class="flex min-h-[calc(100vh-4rem)] flex-col">
+                    <div class="flex-1">
+                        {% block content %}{% endblock %}
+                    </div>
+                    {% include "partials/footer.html" %}
+                </div>
             </main>
         </div>
     </div>

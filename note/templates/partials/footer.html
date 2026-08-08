@@ -1,18 +1,17 @@
 {% load static %}
-<footer class="mt-auto border-t border-blue-800/40 bg-blue-950/95 px-6 py-10 text-white shadow-inner">
+<footer class="mt-auto border-t border-slate-200 bg-white px-6 py-10 text-slate-700 shadow-sm">
     <div class="mx-auto flex max-w-7xl flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
         <div class="flex items-center gap-4">
-            <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="h-14 w-14 rounded-3xl border border-white/20 bg-white/10 p-2" />
+            <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="h-14 w-14 rounded-3xl border border-slate-200 bg-slate-50 p-2" />
             <div>
-                <p class="text-lg font-semibold">Quick Note</p>
-                <p class="mt-1 text-sm text-white/70">A polished note workspace for fast idea capture.</p>
+                <p class="text-lg font-semibold text-slate-900">Quick Note</p>
+                <p class="mt-1 text-sm text-slate-500">A polished note workspace for fast idea capture.</p>
             </div>
         </div>
-        <div class="grid gap-3 text-sm sm:auto-cols-max sm:grid-flow-col text-white/80">
-            <a href="{% url 'home' %}" class="transition hover:text-white">Home</a>
-            <a href="{% url 'about' %}" class="transition hover:text-white">About</a>
-            <a href="{% url 'home' %}?view=all" class="transition hover:text-white">All Notes</a>
+        <div class="grid gap-3 text-sm sm:auto-cols-max sm:grid-flow-col text-slate-600">
+            <a href="{% url 'home' %}" class="transition hover:text-slate-900">Home</a>
+            <a href="{% url 'home' %}?view=all" class="transition hover:text-slate-900">All Notes</a>
         </div>
     </div>
-    <div class="mt-8 text-center text-xs text-white/50">Built with Django and refined note workflow. © 2026 Quick Note</div>
+    <div class="mt-8 text-center text-xs text-slate-500">Built with Django and refined note workflow. © 2026 Quick Note</div>
 </footer>

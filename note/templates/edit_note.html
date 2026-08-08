@@ -12,19 +12,19 @@ Edit Note
             {% csrf_token %}
             <div>
                 <label class="mb-2 block text-sm font-medium text-slate-700" for="title">Title</label>
-                <input id="title" type="text" name="title" value="{{ note.title }}" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200" required>
+                <input id="title" type="text" name="title" value="{{ note.title }}" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-200" required>
             </div>
             <div>
                 <label class="mb-2 block text-sm font-medium text-slate-700" for="content">Content</label>
-                <textarea id="content" name="content" rows="8" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-200" required>{{ note.content }}</textarea>
+                <textarea id="content" name="content" rows="8" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-200" required>{{ note.content }}</textarea>
             </div>
             <div class="flex items-center gap-3">
                 <label class="inline-flex items-center gap-2 text-sm font-medium text-slate-700">
-                    <input type="checkbox" name="important" class="h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500" {% if note.important %}checked{% endif %}>
+                    <input type="checkbox" name="important" class="h-4 w-4 rounded border-slate-300 text-sky-600 focus:ring-sky-500" {% if note.important %}checked{% endif %}>
                     Mark as important
                 </label>
             </div>
-            <button type="submit" class="rounded-2xl bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-700">Update Note</button>
+            <button type="submit" class="rounded-2xl bg-sky-500 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-600">Update Note</button>
         </form>
     </div>
 </div>

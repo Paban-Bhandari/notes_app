@@ -91,17 +91,38 @@ Home
                     </article>
                 {% endfor %}
             {% else %}
-                <div class="rounded-2xl border border-slate-200 bg-white px-4 py-6 text-sm text-slate-600">No notes yet. Start by creating one.</div>
+                <div class="mx-auto max-w-4xl rounded-3xl border border-slate-200 bg-white px-8 py-14 text-slate-600 shadow-sm">
+                <div class="flex min-h-[360px] flex-col items-center justify-center gap-5 text-center">
+                    <div>
+                        {% if view_filter == 'important' %}
+                            <p class="text-xl font-semibold text-slate-900">No bookmarks yet.</p>
+                            <p class="mt-2 text-sm text-slate-500">Bookmark notes to keep them handy and return to them quickly.</p>
+                        {% elif view_filter == 'archived' %}
+                            <p class="text-xl font-semibold text-slate-900">No archived notes yet.</p>
+                            <p class="mt-2 text-sm text-slate-500">Archive notes to clear your inbox while keeping them available later.</p>
+                        {% elif view_filter == 'trash' %}
+                            <p class="text-xl font-semibold text-slate-900">Trash is empty.</p>
+                            <p class="mt-2 text-sm text-slate-500">Deleted notes will appear here until they are permanently removed.</p>
+                        {% else %}
+                            <p class="text-xl font-semibold text-slate-900">No notes yet.</p>
+                            <p class="mt-2 text-sm text-slate-500">Start by creating one.</p>
+                        {% endif %}
+                    </div>
+                    <i class="fa-regular fa-note-sticky text-9xl text-slate-200"></i>
+                </div>
+            </div>
             {% endif %}
         </div>
     {% else %}
-        <div class="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-10 shadow-sm text-center">
-            <p class="text-sm uppercase tracking-[0.2em] text-orange-500">Welcome to Quick Note</p>
-            <h2 class="mt-4 text-3xl font-semibold text-slate-900">Sign in to manage your notes.</h2>
-            <p class="mt-4 text-sm leading-6 text-slate-600">Your notes are private, and only visible after you log in. Create an account to start saving ideas, bookmarks, archived notes, and trash.</p>
-            <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-                <a href="{% url 'login' %}" class="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 px-5 py-3 text-sm font-semibold text-white transition hover:from-orange-600 hover:to-orange-500">Sign in</a>
-                <a href="{% url 'signup' %}" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50">Create account</a>
+        <div class="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-10 shadow-sm text-center">
+                <p class="text-sm uppercase tracking-[0.2em] text-orange-500">Welcome to Quick Note</p>
+                <h2 class="mt-4 text-3xl font-semibold text-slate-900">Sign in to manage your notes.</h2>
+                <p class="mt-4 text-sm leading-6 text-slate-600">Your notes are private, and only visible after you log in. Create an account to start saving ideas, bookmarks, archived notes, and trash.</p>
+                <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                    <a href="{% url 'login' %}" class="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 px-5 py-3 text-sm font-semibold text-white transition hover:from-orange-600 hover:to-orange-500">Sign in</a>
+                    <a href="{% url 'signup' %}" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50">Create account</a>
+                </div>
             </div>
         </div>
     {% endif %}

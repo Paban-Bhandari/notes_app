@@ -240,6 +240,101 @@ body {
     }
 }
 
+/* Medium screens (tablets) tweaks: reduce sidebar and content offsets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    nav[aria-label="Sidebar navigation"] {
+        width: 16rem; /* shorter sidebar on tablets */
+    }
+
+    /* adjust desktop offsets that used 18rem */
+    .ml-72 { margin-left: 16rem !important; }
+    .left-72 { left: 16rem !important; }
+    .fixed.top-0.left-72.right-0 { left: 16rem !important; right: 0 !important; }
+
+    /* tighten auth and hero paddings for medium screens */
+    .auth-panel,
+    .auth-form-container,
+    .mx-auto.max-w-2xl,
+    .mx-auto.max-w-3xl,
+    .mx-auto.max-w-4xl {
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+    }
+
+    /* reduce large icon sizes slightly on tablets */
+    .fa-9xl, .text-9xl { font-size: 4.5rem !important; }
+
+    /* ensure auth grid keeps two columns but reduces gap */
+    .auth-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem; }
+}
+
+/* Mobile sidebar overlay & transform */
+@media (max-width: 768px) {
+    nav[aria-label="Sidebar navigation"] {
+        transform: translateX(-110%);
+        transition: transform .28s cubic-bezier(.2,.9,.2,1);
+        display: flex;
+        z-index: 60;
+        width: 78%;
+        max-width: 320px;
+        will-change: transform;
+    }
+
+    body.sidebar-open nav[aria-label="Sidebar navigation"] {
+        transform: translateX(0);
+    }
+
+    .mobile-sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(2,6,23,0.45);
+        z-index: 50;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .18s ease;
+    }
+
+    body.sidebar-open .mobile-sidebar-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+/* Responsive overrides for template utility classes */
+@media (max-width: 768px) {
+    /* Undo desktop left margin used for sidebar layout */
+    .ml-72 { margin-left: 0 !important; }
+    /* Header position override when sidebar collapses */
+    .left-72 { left: 0 !important; }
+
+    /* Make the main fixed header span full width on mobile */
+    .fixed.top-0.left-72.right-0 {
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    /* Tighter padding for auth & hero cards on small screens */
+    .auth-form-container,
+    .auth-panel,
+    .mx-auto.max-w-2xl,
+    .mx-auto.max-w-3xl,
+    .mx-auto.max-w-4xl {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Ensure auth grid stacks cleanly */
+    .auth-grid { grid-template-columns: 1fr !important; }
+
+    /* Modal and large cards should fit smaller screens */
+    .w-full.max-w-lg,
+    .mx-auto.max-w-4xl,
+    .mx-auto.max-w-2xl {
+        width: 100%;
+        max-width: 100% !important;
+    }
+}
+
 /* Instant CSS tooltips for icon buttons */
 .tooltip {
     position: relative;

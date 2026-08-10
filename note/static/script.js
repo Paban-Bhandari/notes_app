@@ -48,6 +48,102 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateClock, 1000);
     }
 
+    // Mobile sidebar toggle
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const sidebarEl = document.getElementById('sidebar');
+    const bodyEl = document.body;
+
+    // create overlay if missing
+    let mobileOverlay = document.querySelector('.mobile-sidebar-overlay');
+    if (!mobileOverlay) {
+        mobileOverlay = document.createElement('div');
+        mobileOverlay.className = 'mobile-sidebar-overlay';
+        document.body.appendChild(mobileOverlay);
+    }
+
+    let lastFocusedElementBeforeSidebar = null;
+    let sidebarKeydownHandler = null;
+
+    function getFocusableElements(container) {
+        if (!container) return [];
+        const selectors = 'a[href], area[href], input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex="-1"]), [contenteditable]';
+        return Array.from(container.querySelectorAll(selectors)).filter((el) => el.offsetParent !== null);
+    }
+
+    const openSidebar = () => {
+        if (!sidebarEl) {
+            bodyEl.classList.add('sidebar-open');
+            if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'true');
+            return;
+        }
+
+        lastFocusedElementBeforeSidebar = document.activeElement;
+        sidebarEl.setAttribute('aria-hidden', 'false');
+        bodyEl.classList.add('sidebar-open');
+        if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'true');
+
+        const focusable = getFocusableElements(sidebarEl);
+        const firstFocusable = focusable[0] || sidebarClose || sidebarEl;
+        try { firstFocusable.focus(); } catch (e) {}
+
+        sidebarKeydownHandler = (e) => {
+            if (e.key === 'Tab') {
+                const list = getFocusableElements(sidebarEl);
+                if (list.length === 0) {
+                    e.preventDefault();
+                    return;
+                }
+                const first = list[0];
+                const last = list[list.length - 1];
+                if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                } else if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else if (e.key === 'Escape') {
+                closeSidebar();
+            }
+        };
+
+        document.addEventListener('keydown', sidebarKeydownHandler);
+    };
+
+    const closeSidebar = () => {
+        if (sidebarKeydownHandler) {
+            document.removeEventListener('keydown', sidebarKeydownHandler);
+            sidebarKeydownHandler = null;
+        }
+        if (sidebarEl) sidebarEl.setAttribute('aria-hidden', 'true');
+        bodyEl.classList.remove('sidebar-open');
+        if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'false');
+        try {
+            if (lastFocusedElementBeforeSidebar && typeof lastFocusedElementBeforeSidebar.focus === 'function') lastFocusedElementBeforeSidebar.focus();
+        } catch (e) {}
+        lastFocusedElementBeforeSidebar = null;
+    };
+
+    if (sidebarToggle) sidebarToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openSidebar();
+    });
+
+    if (sidebarClose) sidebarClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeSidebar();
+    });
+
+    if (mobileOverlay) mobileOverlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on Escape
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeSidebar();
+        }
+    });
+
     const confirmModal = document.getElementById('confirmModal');
     const confirmModalMessageEl = document.getElementById('confirmModalMessage');
     const confirmModalConfirm = document.getElementById('confirmModalConfirm');

@@ -1,6 +1,8 @@
 {% load static %}
-<nav class="fixed inset-y-0 left-0 flex w-72 flex-col border-r border-slate-200 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 px-5 py-6 text-slate-900 shadow-lg ring-1 ring-slate-200 overflow-hidden" aria-label="Sidebar navigation">
+<nav id="sidebar" aria-hidden="true" class="fixed inset-y-0 left-0 flex w-72 flex-col border-r border-slate-200 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 px-5 py-6 text-slate-900 shadow-lg ring-1 ring-slate-200 overflow-hidden" aria-label="Sidebar navigation">
     <div class="mb-6">
+        <!-- Mobile close button -->
+        <button id="sidebarClose" class="md:hidden absolute top-3 right-3 inline-flex items-center justify-center rounded-full p-2 text-white/90 hover:bg-white/10" aria-label="Close sidebar">×</button>
         <a class="flex items-center gap-3 rounded-[1.8rem] bg-white/10 p-4 shadow-sm shadow-black/10 transition hover:bg-white/15" href="{% url 'about' %}" aria-label="About Quick Note">
             <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="logo-image h-16 w-16 rounded-2xl border border-white/20 bg-white p-1">
             <div class="space-y-1">

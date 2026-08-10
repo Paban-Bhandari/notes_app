@@ -108,7 +108,15 @@ Home
                             <p class="mt-2 text-sm text-slate-500">Start by creating one.</p>
                         {% endif %}
                     </div>
-                    <i class="fa-regular fa-note-sticky text-9xl text-slate-200"></i>
+                    {% if view_filter == 'important' %}
+                        <i class="fa-solid fa-bookmark text-9xl text-slate-200"></i>
+                    {% elif view_filter == 'archived' %}
+                        <i class="fa-solid fa-box-archive text-9xl text-slate-200"></i>
+                    {% elif view_filter == 'trash' %}
+                        <i class="fa-solid fa-trash-can text-9xl text-slate-200"></i>
+                    {% else %}
+                        <i class="fa-regular fa-note-sticky text-9xl text-slate-200"></i>
+                    {% endif %}
                 </div>
             </div>
             {% endif %}

@@ -258,6 +258,8 @@ body {
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
+}
+
     transition: opacity 0.08s linear;
     z-index: 60;
     box-shadow: 0 6px 18px rgba(2,6,23,0.32);

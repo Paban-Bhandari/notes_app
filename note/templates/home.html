@@ -95,11 +95,11 @@ Home
             {% endif %}
         </div>
     {% else %}
-        <div class="rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
+        <div class="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-10 shadow-sm text-center">
             <p class="text-sm uppercase tracking-[0.2em] text-orange-500">Welcome to Quick Note</p>
             <h2 class="mt-4 text-3xl font-semibold text-slate-900">Sign in to manage your notes.</h2>
             <p class="mt-4 text-sm leading-6 text-slate-600">Your notes are private, and only visible after you log in. Create an account to start saving ideas, bookmarks, archived notes, and trash.</p>
-            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <div class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <a href="{% url 'login' %}" class="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 px-5 py-3 text-sm font-semibold text-white transition hover:from-orange-600 hover:to-orange-500">Sign in</a>
                 <a href="{% url 'signup' %}" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50">Create account</a>
             </div>

@@ -247,9 +247,9 @@ body {
     }
 
     /* adjust desktop offsets that used 18rem */
-    .ml-72 { margin-left: 16rem !important; }
-    .left-72 { left: 16rem !important; }
-    .fixed.top-0.left-72.right-0 { left: 16rem !important; right: 0 !important; }
+    .ml-80 { margin-left: 20rem !important; }
+    .left-80 { left: 20rem !important; }
+    .fixed.top-0.left-80.right-0 { left: 20rem !important; right: 0 !important; }
 
     /* tighten auth and hero paddings for medium screens */
     .auth-panel,
@@ -303,12 +303,12 @@ body {
 /* Responsive overrides for template utility classes */
 @media (max-width: 768px) {
     /* Undo desktop left margin used for sidebar layout */
-    .ml-72 { margin-left: 0 !important; }
+    .ml-80 { margin-left: 0 !important; }
     /* Header position override when sidebar collapses */
-    .left-72 { left: 0 !important; }
+    .left-80 { left: 0 !important; }
 
     /* Make the main fixed header span full width on mobile */
-    .fixed.top-0.left-72.right-0 {
+    .fixed.top-0.left-80.right-0 {
         left: 0 !important;
         right: 0 !important;
     }

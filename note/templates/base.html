@@ -13,8 +13,8 @@
 <body class="min-h-screen text-slate-900 bg-slate-50">
     <div class="flex min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.08),_transparent_30%),linear-gradient(180deg,#eff6ff_0%,#f8fafc_100%)]">
         {% include "partials/navbar.html" %}
-        <div class="ml-72 flex min-w-0 flex-1 flex-col overflow-hidden">
-            <div class="fixed top-0 left-72 right-0 z-40 flex items-center justify-between border-b border-slate-200/80 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6 text-slate-900">
+        <div class="ml-80 flex min-w-0 flex-1 flex-col overflow-hidden">
+            <div class="fixed top-0 left-80 right-0 z-40 flex items-center justify-between border-b border-slate-200/80 bg-white/95 px-3 py-4 shadow-sm backdrop-blur sm:px-6 sm:py-3 text-slate-900">
                 <div class="flex items-center gap-3">
                     <button id="sidebarToggle" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
                         <i class="fa-solid fa-bars"></i>
@@ -25,9 +25,11 @@
                     <div class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">Workspace • Notes</div>
                 </div>
                 <div class="flex items-center gap-3 text-sm font-medium">
-                    <span id="current-date" class="text-slate-700"></span>
-                    <span class="text-slate-400">•</span>
-                    <span id="current-time" class="text-slate-700"></span>
+                    <div class="flex flex-col items-end rounded-2xl border border-slate-200 bg-slate-50/90 px-3 py-2 shadow-sm sm:flex-row sm:items-center sm:gap-2">
+                        <span id="current-date" class="text-[11px] font-semibold text-slate-700 sm:text-sm"></span>
+                        <span class="hidden text-slate-400 sm:inline">•</span>
+                        <span id="current-time" class="text-[11px] font-medium text-slate-500 sm:text-sm sm:text-slate-700"></span>
+                    </div>
                 </div>
             </div>
             <main class="flex-1 overflow-y-auto pt-16">

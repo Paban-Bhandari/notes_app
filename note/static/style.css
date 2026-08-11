@@ -313,6 +313,13 @@ body {
         right: 0 !important;
     }
 
+    /* Defensive resets: ensure no leftover offsets remain from utility classes */
+    .ml-72, .ml-80 { margin-left: 0 !important; }
+    .left-72, .left-80 { left: 0 !important; }
+    /* Ensure any fixed header spans full width on mobile */
+    .fixed.top-0 { left: 0 !important; right: 0 !important; }
+
+
     /* Tighter padding for auth & hero cards on small screens */
     .auth-form-container,
     .auth-panel,

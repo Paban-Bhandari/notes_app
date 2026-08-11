@@ -19,8 +19,12 @@
                     <button id="sidebarToggle" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100" aria-label="Open sidebar" aria-controls="sidebar" aria-expanded="false">
                         <i class="fa-solid fa-bars"></i>
                     </button>
-                    <a href="{% url 'about' %}" class="md:hidden flex items-center gap-2">
+                    <a href="{% url 'about' %}" class="md:hidden flex items-center gap-3">
                         <img src="{% static 'images/logo.png' %}" alt="Quick Note logo" class="w-8 h-8 rounded-2xl border border-white/20 bg-white p-1">
+                        <div class="leading-tight">
+                            <p class="text-sm font-semibold text-slate-700"><span class="font-bold text-orange-600">Quick</span>Note</p>
+                            <p class="text-xs text-slate-400">Capture ideas</p>
+                        </div>
                     </a>
                     <div class="hidden md:block text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">Workspace • Notes</div>
                 </div>

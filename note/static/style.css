@@ -295,18 +295,30 @@ body {
     }
 
     #sidebarClose {
-        background: transparent;
-        border: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
         color: #ffffff;
         font-size: 1.8rem;
         line-height: 1;
-        padding: 0;
+        padding: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
     }
 
     #sidebarClose:hover,
     #sidebarClose:focus {
         color: #fbcf7d;
         outline: none;
+        box-shadow: none;
     }
 
     .mobile-sidebar-overlay {

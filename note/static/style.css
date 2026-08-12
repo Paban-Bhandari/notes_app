@@ -62,6 +62,16 @@ body {
     transform: translateX(2px);
 }
 
+.account-row {
+    min-width: 0;
+}
+
+.account-row span {
+    display: inline-block;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
 .page-content {
     flex: 1;
     display: flex;
@@ -246,10 +256,10 @@ body {
         width: 16rem; /* shorter sidebar on tablets */
     }
 
-    /* adjust desktop offsets that used 18rem */
-    .ml-80 { margin-left: 20rem !important; }
-    .left-80 { left: 20rem !important; }
-    .fixed.top-0.left-80.right-0 { left: 20rem !important; right: 0 !important; }
+    /* adjust desktop offsets for tablet sidebar width */
+    .ml-80 { margin-left: 16rem !important; }
+    .left-80 { left: 16rem !important; }
+    .fixed.top-0.left-80.right-0 { left: 16rem !important; right: 0 !important; }
 
     /* tighten auth and hero paddings for medium screens */
     .auth-panel,
@@ -282,6 +292,21 @@ body {
 
     body.sidebar-open nav[aria-label="Sidebar navigation"] {
         transform: translateX(0);
+    }
+
+    #sidebarClose {
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        font-size: 1.8rem;
+        line-height: 1;
+        padding: 0;
+    }
+
+    #sidebarClose:hover,
+    #sidebarClose:focus {
+        color: #fbcf7d;
+        outline: none;
     }
 
     .mobile-sidebar-overlay {
